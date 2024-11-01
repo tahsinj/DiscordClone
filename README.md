@@ -12,16 +12,19 @@ The Discord clone project focuses on building a versatile online platform that a
 ### User Requirements
 - Dynamic Communication: Users need to communicate in real-time, access channels easily, and have control over their message notifications to avoid distraction
 - Profile and Settings Management: Users can update their personal settings, manage visibility preferences, and set temporary statuses
-- Role-Specific Permissions: Administrators and moderators need permissions to manage channel content, user access, and security settings to maintain a safe and organized space
 - Simple Commands for Quick Actions: Users should be able to use text-based commands to join channels, change settings, and interact with the platform efficiently
 ### Functional Requirements
 - Messaging and Channel Operations: Enable real-time messaging that remains responsive as user count grows. Support seamless entry into different channels with notifications for new messages and mentions.
 - Command Processing System: A system for interpreting and executing user commands without delay, creating a smoother user experience and reducing manual effort.
 - Scalable Server Management: Control server usage to avoid excess resource consumption, ensuring that the platform can handle a growing user base with minimal lag.
-- Automated Testing and Continuous Integration: Regular automated testing of features before deployment to ensure a bug-free, stable experience for users.
+
 ### Non-functional Requirements
 - High Performance: Users should experience minimal latency (ideally under 1 second) in messaging and command execution, even during peak usage times.
 - Reliability: Maintain an uptime of at least 99.9% with minimal interruptions to ensure consistent access.
 - Security: Protect user data through secure authentication and encrypted communication, preventing unauthorized access.
 - Accessibility: Design for screen reader compatibility and provide accessible navigation options to ensure usability for all users.
 - Usability: A straightforward, user-friendly interface that requires minimal guidance, allowing users to intuitively find settings and features.
+
+### Environmental Requirements
+- Automated Testing and Continuous Integration: Regular automated testing of features before deployment to ensure a bug-free, stable experience for users.
+- Supported Browsers: The application should be compatible with multiple browsers -- at least Chrome, Safari, Firefox.
