@@ -5,8 +5,8 @@ The Discord clone project focuses on building a versatile online platform that a
 1. Real-Time Messaging: Users can send and receive messages instantly within designated channels, supporting small group discussions
 2. Channel Organization: Users can create and join channels focused on specific topics, allowing for organized communication within smaller groups
 3. Basic User Management: Users will be able to sign up, log in, and create simple profiles, including the ability to change display names
-4. Notifications: Users can utilize basic commands for actions like joining channels and updating profile names, enhancing usability without extensive UI requirements
-5. Notifications: Notifications for new messages within active channels to keep users updated on conversations without complex notification management
+4. User Interaction Commands: Users can utilize basic commands for actions like joining channels and updating profile names, enhancing usability without extensive UI requirements
+5. Notifications: Users can enable/disable Notifications for new messages within active channels to keep users updated on conversations without complex notification management.
 
 ## Requirements Analysis and Development
 ### User Requirements
