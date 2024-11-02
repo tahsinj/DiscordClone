@@ -1,74 +1,224 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/HWOPiRJG)
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=16752897)
+# Discord Clone
+## Description
+The Discord clone project focuses on building a versatile online platform that allows seamless communication for individuals and groups. The application will support essential functions including channels, private messaging, and user management. The platform is designed to support a wide range of users while also creating an accessible web interface. It will also enable structured converstaions across distinct channels and group management. We aim to establish the given software design patterns to ensure that this application is both adaptable and maintanable.
+### Features
+1. Real-Time Messaging: Users can send and receive messages instantly within designated channels, supporting small group discussions
+2. Channel Organization: Users can create and join channels focused on specific topics, allowing for organized communication within smaller groups
+3. Basic User Management: Users will be able to sign up, log in, and create simple profiles, including the ability to change display names
+4. User Interaction Commands: Users can utilize basic commands for actions like joining channels and updating profile names, enhancing usability without extensive UI requirements
+5. Notifications: Users can enable/disable Notifications for new messages within active channels to keep users updated on conversations without complex notification management.
 
-# The Project
 
-The project provides you an opportunity to build upon the foundational knowledge acquired in this course. It is designed to help you develop an advanced understanding of software engineering principles, tools, and techniques using structured requirements gathering and analysis, software development process, design patterns, software architecture, and software testing.  You will also need to consider your development methodology (don’t use waterfall), software metrics, and software quality assurance.
+## Requirements Analysis and Development
+### User Requirements
+- Dynamic Communication: Users need to communicate in real-time, access channels easily, and have control over their message notifications to avoid distraction
+- Profile and Settings Management: Users can update their personal settings, manage visibility preferences, and set temporary statuses
+- Simple Commands for Quick Actions: Users should be able to use text-based commands to join channels, change settings, and interact with the platform efficiently
+- Audio Channel: Users will be able to join a voice channel and talk with other users.
+### Functional Requirements
+- Messaging and Channel Operations: Enable real-time messaging that remains responsive as user count grows. Support seamless entry into different channels with notifications for new messages and mentions.
+- Command Processing System: A system for interpreting and executing user commands without delay, creating a smoother user experience and reducing manual effort.
+- Scalable Server Management: Control server usage to avoid excess resource consumption, ensuring that the platform can handle a growing user base with minimal lag.
 
-As a team, you will select a project, develop a set of requirements, conduct a formal analysis of the project, develop an architecture, and then using TDD and an Agile workflow, iterate and develop your projects.  During your project, you MUST consider design patterns and anti-patterns, TDD, dockerization, and CI/CD.  The goal is not necessarily to build a complex system, but to practice and become comfortable with the techniques, be able to analyze and decompose a problem, and incrementally develop and deploy a solution using a branching workflow.  The systems needs to be properly planned, analyzed, modelled and implement.   
+### Non-functional Requirements
+- High Performance: Users should experience minimal latency (ideally under 1 second) in messaging and command execution, even during peak usage times.
+- Reliability: Maintain an uptime of at least 99.9% with minimal interruptions to ensure consistent access.
+- Security: Protect user data through secure authentication and encrypted communication, preventing unauthorized access.
+- Accessibility: Design for screen reader compatibility and provide accessible navigation options to ensure usability for all users.
+- Usability: A straightforward, user-friendly interface that requires minimal guidance, allowing users to intuitively find settings and features.
 
-Internally, within your team, you are free to manage efforts and tasks with the understanding that everyone is expected to contribute equally in some fashion.  During the project, you will have the chance to confidentially conduct peer reviews using the credit-earned model (see document on Canvas regarding this) at a number of key points.   Your individual project grade will be impacted using the results of the peer evaluation.   The key point is that if you don’t contribute to the project, your mark will reflect this.  This will be discussed in class.
+### Environmental Requirements
+- Automated Testing and Continuous Integration: Regular automated testing of features before deployment to ensure a bug-free, stable experience for users.
+- Supported Browsers: The application should be compatible with multiple browsers -- at least Chrome, Safari, Firefox.
 
-**You must have:**
+### Persona 1
+![](requirements/persona1.png)
 
-* Unit tests and integration tests to ensure code quality and functionality
-* A CI to automatically test
-* Set of user requirements, identified user groups, and developed use-cases
-* Identified what design patterns you are using and describe why
-* Dockerized deployment
-* Continual and ongoing work using TDD 
-* A team between 3-5 people (no more, no less) - target for 4
+### Persona 2
+![](requirements/persona2.png)
 
-**Stretch goals:**
 
-* CD pipeline to deploy changes to the codebase
-  
-## Project Goals:
+### Use Case Diagram
+![](requirements/use_case_diagram.png)
 
-* To deepen the students' understanding of software engineering principles, tools, and techniques.
-* To enable students to apply software engineering principles, tools, and techniques to the development of complex software systems.
-* To introduce students to agile development methodologies, software metrics, and software quality assurance.
-* To foster collaboration and teamwork among students in the development of software systems.
+#### UC1: Create Channel
+- Primary Actor: Input User
+- Description: The Sender initiaties the creation of a new channel within a server.
+- Pre-Condition: The Sender has the permissions needed to create channels in the desired server.
+- Post-Condition: A new channel is created and visible to users with permission.
 
-The goal is to be able to build good code quickly (using the proper processes).  Remember: **Perfect is the enemy of good**
+- Main Scenario: <br>
+    1) The Sender desires to create a new channel and clicks "Create Channel" in the server channel list.
+    2) The Sender is prompted to select channel name, settings, permissions.
+    3) The Sender inputs the channel details.
+    4) The new channel is created, and visible in the server's channel list, to those who have permission.
 
-Build incrementally with this in mind, making small and incremental improvements.   
+- Extensions: <br>
+    1) Channel name is invalid. The user should be prompted to change the name and try again.
+    2) Insufficient permissions. The user is notified they do not have the authority to create a channel.
 
-## Project Objectives:
+#### UC2: Update Profile
+- Primary Actor: Input User
+- Description: The Sender is able to update their profile information including display name, profile picture, and "About Me".
+- Pre-Condition: The Sender is logged into an account
+- Post-Condition: The profile is updated with the desired changes for everyone on the app.
 
-By the end of this project, students will be able to:
+- Main Scenario: <br>
+    1) The Sender navigates to their profile and clicks "Update Profile".
+    2) The Sender updates the desired details.
+    3) The Sender confirms and saves the changes.
+    4) The updated profile is visible everyone on the app.
 
-* Apply the software development process model, to the development of a software system
-* Design software systems using appropriate design patterns and principles
-* Develop software architectures for complex software systems
-* Use software testing techniques to ensure the quality of software systems
-* Apply agile development methodologies to the development of software systems
-* Apply software metrics to evaluate the quality of software systems
-* Develop software quality assurance plans to ensure the quality of software systems
-* Apply and develop a CI/CD pipeline for automated testing and deployment
-* Utilize dockerization to containerize your application
-* Work collaboratively in teams to develop software systems
+- Extensions: <br>
+    1) The updated information is in an incorrect format. The Sender should be notified that the information is in the wrong format. This includes invalid text fields and profile picture.
 
-**Peer Evaluation:** see [Peer Evaluation](https://canvas.ubc.ca/courses/150415/pages/peer-evaluation?wrap=1)
+#### UC3: Login
 
-## Evaluation: 
+- Primary Actor: Input User
+- Description: The Sender enters their email and password to log into their account.
+- Pre-Condition: The Sender already has a registered account.
+- Post-Condition: The Sender is logged in to their account.
 
-See Canvas for [details](https://canvas.ubc.ca/courses/150415/pages/the-project).
+- Main Scenario <br>
+    1) The Sender opens the application's login page.
+    2) The Sender enters their email and password.
+    3) The Application verifies if the email and password match a registered account (Using UC7).
+    4) The Sender is logged into their account.
 
-## The Projects (all are web apps):
+- Extensions: <br>
+    1) Incorrect Login Information. The Application displays an error message, prompting the sender to re-enter their information.
 
-**Your team MUST select one of the these projects.**  Please take the time to review the details for each.
+#### UC4: Join Text Channel
 
-**Todo App:**  Develop a basic to-do list app that allows users to manage tasks. Users can add, edit, delete tasks, and organize them by categories or due dates.  Users will also be able to share (view/edit) with other users.  The system needs to allow tasks to be organized into custom categories (e.g., Work, Personal) as well as support optional due dates with simple reminders or alerts.  Users will be able to ssign priority to tasks (e.g., High, Medium, Low) as well as view tasks based on categories, priorities, or due dates.  The platform should incorporate the Command Pattern to implement undo and redo functionalities for task actions, the Observer Pattern to update task lists dynamically when changes occur and the Strategy Pattern for sorting algorithms based on different criteria. Additionally, the platform should incorporate Continuous Integration (CI) and automated testing.
+- Primary Actor: Input User
+- Description: The Sender wishes to participate in a text channel.
+- Pre-Condition: The Sender is logged into an account and has permissions to join the channel.
+- Post-Condition: The Sender is added to the text channel and can view and send messages.
 
-**Flashcard Study App:**  Create a simple flashcard application that allows users to create, edit, and review flashcards for studying. The app supports text-based cards and simple categorization into decks.  With the online system,  users will be able to create and organize flashcards into decks by subject or topic.  They will be able to create flashcards but adding questions and answers to flashcards.   The system will have a study mode that will allow flashcards to be reviewed in order or in a randomized fashion.   The system will also allow for progress tracking, allowing users to  mark flashcards as known or unknown so progress can be tracked.  Users will also allow their flashcards to be shared with other users or publicly as well as having the ability to share decks with others via simple file formats.  The platform should incorporate the Factory Pattern for creating different types of flashcards or decks, the Iterator Pattern to  navigate through flashcards efficiently and the Singleton Pattern to manage user settings or session data.  Additionally, the platform should incorporate Continuous Integration (CI) and automated testing.
+- Main Scenario: <br>
+    1) The Sender selects a channel from the list
+    2) The System connects them to the channel if they have permissions for the channel.
+    3) The Sender can now view messages, and send messages (Using Use Case #5).
 
-**Weather Forecast Application:** Build a simple application that displays current weather information and a 5-day forecast for a user-selected location using a public weather API.  Users will need to create an account so they can access and edit  their dashboard as well as being able to share it with other users.  The system must support location search where users can search for weather information by city name as well as display the current weather showing temperature, weather conditions, and an icon representing the weather (with the user being able to select formats/options for how data is displayed).  The system will also show a 5-day forecast which will display basic forecast information for the next five days.  Users will also be able to save favourite locations for quick access on their dashboard as well as being able to save and share with other users.   The platform should incorporate the Adapter Pattern to interface with the external weather API. the Singleton Pattern to  manage a single instance of the API client and the Facade Pattern to simplify the interface for fetching and displaying weather data.   Additionally, the platform should incorporate Continuous Integration (CI) and automated testing.
+- Extensions: <br>
+    1) Channel is unavailable. The Sender is prompted that the channel cannot be accessed at this moment.
+    2) Invalid Permissions. The Sender is prompted that they do not have permissions to access the channel.
 
-**Discord Clone:** This project involves the development of a web-based platform for online communication and collaboration, similar to the popular chat app, Discord. The platform should incorporate the Observer design pattern to notify users of new messages, and the Mediator design pattern to manage communication between users and channels. The platform should also implement the Singleton design pattern to ensure that only one instance of the chat server is running at any given time, and the Command design pattern to enable users to execute commands (e.g. change username, join channel). Additionally, the platform should incorporate Continuous Integration (CI) and automated testing.
 
-## Statement on the Use of GitHub Copilot and Generative AI Tools
+#### UC5: Send Message
 
-Students are permitted and encouraged to utilize AI-powered tools such as GitHub Copilot and other generative AI assistants for coding, user interface (UI), and user experience (UX) design aspects of their projects. These tools can serve as valuable resources to enhance productivity, inspire creativity, and assist in overcoming technical challenges.  The focus of the project is to develop and improve skills surrounding the process of developing software BUT the team must observe the process and work in an iterative fashion using TDD.  
+- Primary Actor: Input User
+- Description: The sender sends a message in the text channel, and all other members in the channel can view it.
+- Pre-Condition: The Sender is connected to the channel and has permission to send messages.
+- Post-Condition: The message is delievered in the channel, and all other members can see it.
 
-Please see further detals on Canvas in for [Guidelines for Responsible Use](https://canvas.ubc.ca/courses/150415/pages/the-project)
+- Main Scenario: <br>
+    1) Sender types desired message in the channel's message field and clicks "Send".
+    2) The System uploads the message to the channel.
+    3) All other memebers in the channel can view the message.
+
+- Extensions: <br>
+    1) Invalid Permission. If the Sender does not have permissions to message in the channel, they will be notified, and the message will not be uploaded.
+
+#### UC6: Sign Up
+
+- Primary Actor: Input User (new user)
+- Description: The user is able to enter their email, password and username to create a new account for the application.
+- Pre-Condition: The user has an email, password, and desired username.
+- Post-Condition: A new account for the application is created, and the user is logged in.
+
+- Main Scenario: <br>
+    1) The user opens the application and wants to create an account.
+    2) The user enters their email, password, and username for the application.
+    3) The application authenticates the information. (Using Use Case #7)
+    4) A new account is created, and the user is able to use the app.
+
+- Extensions: <br>
+    1) Email is already Used. The user is notified the email is already being used for an account, and given the option to log in.
+    2) Invalid Format. The User is notified the details are in the incorrect format, and prompted to try again.
+
+#### UC7: Authenticate Email/Password
+- Primary Actor: User
+- Description: The User initiates the authentication process using an email and password to log into the platform.
+- Pre-Condition: The User has previously registered an account with a valid email and password.
+- Post-Condition: The User is logged in and granted access to their account.
+
+- Main Scenario: <br>
+
+    1) The User opens the login page and enters their email and password.
+    2) The system verifies the entered email and password against stored user data.
+    3) If the credentials are correct, the User is authenticated.
+    4) The User is directed to the main application dashboard.
+
+- Extensions:<br>
+
+    1) Invalid credentials: The system notifies the User that the email or password is incorrect and prompts them to try again.
+    2) Account locked: If multiple login attempts fail, the system locks the account and requires verification to unlock.
+
+#### UC8: Join Voice Channel
+- Primary Actor: User
+- Description: The User initiates a request to join an existing voice channel.
+- Pre-Condition: The User is logged in and has permission to join voice channels within the server.
+- Post-Condition: The User is added to the voice channel and can communicate with others in the channel.
+
+- Main Scenario: <br>
+
+    1) The User navigates to the desired voice channel in the server.
+    2) The User clicks “Join Voice Channel.”
+    3) The system checks that the User has permission to join the voice channel.
+    4) The User is connected to the voice channel and can begin voice communication.
+- Extensions: <br>
+
+    1) Insufficient permissions: The system notifies the User that they lack the required permissions to join the channel.
+    2) Channel full: If the channel has reached its maximum capacity, the User is notified and unable to join.
+
+#### UC9: Send Friend Request
+- Primary Actor: User
+- Description: The User sends a friend request to connect with another user on the platform.
+- Pre-Condition: The User is logged in and has the other user's username or profile available.
+- Post-Condition: A friend request is sent to the targeted user.
+
+- Main Scenario: <br>
+
+    1) The User navigates to the profile of the user they wish to add as a friend.
+    2) The User clicks “Send Friend Request.”
+    3) The system sends a friend request notification to the target user.
+    4) The target user sees the friend request in their notifications.
+- Extensions: <br>
+
+    1) Already friends: The system notifies the User that they are already friends with this person.
+    2) Friend request limit reached: If the User has reached the maximum friend request limit, they are notified accordingly.
+
+#### UC10: Toggle Notifications
+- Primary Actor: User
+- Description: The User toggles notifications on or off for specific channels or the entire application.
+- Pre-Condition: The User is logged in and has access to notification settings.
+- Post-Condition: Notifications are toggled on or off as per the User’s choice.
+
+- Main Scenario: <br>
+
+    1) The User navigates to the notification settings menu.
+    2) The User selects the desired channels or global setting to toggle notifications.
+    3) The system updates the User’s notification settings accordingly.
+    4) The User is informed of the successful update.
+- Extensions:
+
+    1) Invalid selection: If the User attempts to toggle notifications for a channel they don’t have access to, they are notified.
+    2) Global notification restrictions: If the application has a restriction (e.g., admin-only notifications), the User is informed that only certain notifications can be disabled.
+
+#### UC11: Send Direct Message
+- Primary Actor: User
+- Description: The User sends a direct message to another user on the platform.
+- Pre-Condition: The User is logged in and has the recipient's username or is connected as a friend.
+- Post-Condition: The direct message is sent, and the recipient is notified.
+
+- Main Scenario: <br>
+
+    1) The User navigates to their friend list or directly to the chat interface for the specific recipient.
+    2) The User types the message in the message input field.
+    3) The User clicks “Send,” and the message is delivered to the recipient.
+    4) The recipient receives the message and is notified.
+- Extensions: <br>
+
+    1) Recipient unavailable: If the recipient is offline, the system stores the message and delivers it when they come online.
+    2) Message delivery failed: If the system experiences issues, the User is notified that the message could not be sent and prompted to retry.
