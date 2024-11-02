@@ -30,3 +30,12 @@ The Discord clone project focuses on building a versatile online platform that a
 ### Environmental Requirements
 - Automated Testing and Continuous Integration: Regular automated testing of features before deployment to ensure a bug-free, stable experience for users.
 - Supported Browsers: The application should be compatible with multiple browsers -- at least Chrome, Safari, Firefox.
+
+### Use Case Diagram
+
+![](requirements/use_case_diagram.png)
+
+### Persona 1
+![](requirements/persona1.png)
+
+### Persona 2![](requirements/persona2.png)
