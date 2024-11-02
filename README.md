@@ -8,11 +8,13 @@ The Discord clone project focuses on building a versatile online platform that a
 4. User Interaction Commands: Users can utilize basic commands for actions like joining channels and updating profile names, enhancing usability without extensive UI requirements
 5. Notifications: Users can enable/disable Notifications for new messages within active channels to keep users updated on conversations without complex notification management.
 
+
 ## Requirements Analysis and Development
 ### User Requirements
 - Dynamic Communication: Users need to communicate in real-time, access channels easily, and have control over their message notifications to avoid distraction
 - Profile and Settings Management: Users can update their personal settings, manage visibility preferences, and set temporary statuses
 - Simple Commands for Quick Actions: Users should be able to use text-based commands to join channels, change settings, and interact with the platform efficiently
+- Audio Channel: Users will be able to join a voice channel and talk with other users.
 ### Functional Requirements
 - Messaging and Channel Operations: Enable real-time messaging that remains responsive as user count grows. Support seamless entry into different channels with notifications for new messages and mentions.
 - Command Processing System: A system for interpreting and executing user commands without delay, creating a smoother user experience and reducing manual effort.
