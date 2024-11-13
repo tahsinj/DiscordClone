@@ -1,6 +1,7 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import { StreamChat } from "stream-chat";
 
+
 export async function POST(request: Request) {
 
     const apiKey = process.env.STREAM_API_KEY;
@@ -27,6 +28,16 @@ export async function POST(request: Request) {
     //others roles arae guest, admin, moderator etc.
     const user = await serverClient.upsertUser({
         id: userId,
-        role: "user"
+        role: "user",
+        name: mail,
+        image: `https://getstream.io/random_png/?id=${userId}&name=${mail}`,
     });
+
+    const params = {
+        publicMetaData: {
+            streamRegistered: true,
+
+        },
+    };
+    
 }
