@@ -17,7 +17,7 @@ export default function Home() {
   const [homeState, setHomeState] = useState<HomeState | undefined>();
   const {user: clerkUser} = useClerk()
 
-  //register user function
+  //Method to register the user.
   const registerUser = useCallback(async function RegiserUser() {
     //local variables for clerkUser
     const userId = clerkUser?.id;
@@ -37,6 +37,7 @@ export default function Home() {
     //update clerkUser whenever this is changed.
   },[clerkUser])
   
+  // Function to get user token from frontend. fields needed are user ID and name.
   async function getUserToken(userId: string, userName: string){
     const response = await fetch('/api/token',{
       method: 'POST',
