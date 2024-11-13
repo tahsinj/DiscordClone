@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^5.0.62",
     "@clerk/nextjs": "^6.3.1",
     "next": "15.0.3",
     "react": "^18.3.1",
