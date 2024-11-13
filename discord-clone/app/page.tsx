@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { User } from "stream-chat";
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { LoadingIndicator } from "stream-chat-react";
 import { useClerk } from "@clerk/nextjs";
 
@@ -23,7 +23,7 @@ export default function Home() {
     const userId = clerkUser?.id;
     const mail = clerkUser?.primaryEmailAddress?.emailAddress;
     if (userId && mail){
-      const response = await fetch('api/register-user', {
+      const response = await fetch('/api/register-user', {
         method:'POST',
         headers:{
           'Content-Type': 'application/json'
@@ -65,7 +65,27 @@ export default function Home() {
     }
   }
 
-
+  useEffect(() => {
+    if (
+      clerkUser?.id &&
+      clerkUser?.primaryEmailAddress?.emailAddress &&
+      !clerkUser?.publicMetadata.streamRegistered
+    ) {
+      registerUser().then((result) => {
+        getUserToken(
+          clerkUser?.id,
+          clerkUser?.primaryEmailAddress?.emailAddress || 'Unknown'
+        );
+      });
+    } else {
+      if (clerkUser?.id) {
+        getUserToken(
+          clerkUser?.id || 'Unknown',
+          clerkUser?.primaryEmailAddress?.emailAddress || 'Unknown'
+        );
+      }
+    }
+  }, [registerUser, clerkUser]);
   // LoadingIndicator is displayed until we have a homestate to display.
   if (!homeState){return <LoadingIndicator />};
 

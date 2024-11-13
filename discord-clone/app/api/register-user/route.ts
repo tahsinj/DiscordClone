@@ -11,7 +11,7 @@ export async function POST(request: Request) {
 
     const serverClient = StreamChat.getInstance(
       apiKey,
-      process.env.STREAM_CHAT_SECRET
+      process.env.STREAM_SECRET
     );
     const body = await request.json();
     console.log('[/api/register-user] Body:', body);
@@ -39,5 +39,13 @@ export async function POST(request: Request) {
 
         },
     };
-    
+    const updatedUser = (await clerkClient()).users.updateUser(userId, params);
+
+    console.log('[/api/register-user] User: ', updatedUser);
+    const response = {
+        userId: userId,
+        userName: mail,
+    }
+
+    return Response.json(response);
 }
