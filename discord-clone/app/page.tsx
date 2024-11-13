@@ -19,6 +19,7 @@ export default function Home() {
 
   //register user function
   const registerUser = useCallback(async function RegiserUser() {
+    //local variables for clerkUser
     const userId = clerkUser?.id;
     const mail = clerkUser?.primaryEmailAddress?.emailAddress;
     if (userId && mail){
@@ -34,7 +35,8 @@ export default function Home() {
       return responseBody
     }
     
-  },[])
+  },[clerkUser])
+  //update clerkUser whenever this is changed.
   
   // LoadingIndicator is displayed until we have a homestate to display.
   if (!homeState){return <LoadingIndicator/>};
