@@ -34,12 +34,39 @@ export default function Home() {
       const responseBody = response.json();
       return responseBody
     }
-    
+    //update clerkUser whenever this is changed.
   },[clerkUser])
-  //update clerkUser whenever this is changed.
   
-  // LoadingIndicator is displayed until we have a homestate to display.
-  if (!homeState){return <LoadingIndicator/>};
+  async function getUserToken(userId: string, userName: string){
+    const response = await fetch('/api/token',{
+      method: 'POST',
+      headers:{ 'Content-Type': 'application/json'},
+      body: JSON.stringify({userId: userId}),
+    });
 
-  return (<div>Welcome to Discord</div>);
+    const responseBody = await response.json();
+    const token = responseBody.token;
+
+    if (!token){
+      console.error("No Token!");
+    }
+
+    const user: User = {
+      id: userId,
+      name: userName,
+      image: `https://getstream.io/random_png/?id=${userId}&name=${userName}`,
+    };
+
+    const apiKey = process.env.STREAM_API_KEY;
+    if (apiKey){
+
+    setHomeState({apiKey: apiKey, user: user, token: token});
+    }
+  }
+
+
+  // LoadingIndicator is displayed until we have a homestate to display.
+  if (!homeState){return <LoadingIndicator />};
+
+  return <div>Welcome to Discord</div>;
 }
