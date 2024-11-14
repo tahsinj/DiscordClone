@@ -26,12 +26,18 @@ export async function POST(request: Request) {
 
     //This "role" is apart of the stream dashboard. 
     //others roles arae guest, admin, moderator etc.
-    const user = await serverClient.upsertUser({
-        id: userId,
-        role: "user",
-        name: mail,
-        image: `https://getstream.io/random_png/?id=${userId}&name=${mail}`,
-    });
+    try {
+        const user = await serverClient.upsertUser({
+          id: userId,
+          role: "user",
+          name: mail,
+          image: `https://getstream.io/random_png/?id=${userId}&name=${mail}`,
+        });
+      } catch (error) {
+        console.error("Error upserting user in Stream:", error);
+        return Response.error();
+      }
+      
 
     const params = {
         publicMetaData: {
