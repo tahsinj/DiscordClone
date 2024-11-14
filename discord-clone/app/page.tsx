@@ -16,58 +16,62 @@ type HomeState = {
 export default function Home() { 
   const [homeState, setHomeState] = useState<HomeState | undefined>();
   const {user: clerkUser} = useClerk()
+  console.log("Clerk user:", clerkUser); // Check if Clerk is providing user data
 
   //Method to register the user.
-  const registerUser = useCallback(async function RegiserUser() {
-    //local variables for clerkUser
+  const registerUser = useCallback(async function RegisterUser() {
     const userId = clerkUser?.id;
     const mail = clerkUser?.primaryEmailAddress?.emailAddress;
-    if (userId && mail){
+  
+    console.log("Registering user:", { userId, mail }); // Add this log
+  
+    if (userId && mail) {
       const response = await fetch('/api/register-user', {
-        method:'POST',
-        headers:{
+        method: 'POST',
+        headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({userId: userId, email: mail}),
-
-      })
-      const responseBody = response.json();
-      console.log("registerUser response:", responseBody); 
-      return responseBody
-    }
-    //update clerkUser whenever this is changed.
-  },[clerkUser])
+        body: JSON.stringify({ userId, email: mail }),
+      });
   
-  // Function to get user token from frontend. fields needed are user ID and name.
-  async function getUserToken(userId: string, userName: string){
-    console.log("Getting user token for", userId, userName);
-    const response = await fetch('/api/token',{
+      const responseBody = await response.json();
+      console.log("registerUser response:", responseBody);
+  
+      return responseBody;
+    }
+  }, [clerkUser]);
+  
+  async function getUserToken(userId: string, userName: string) {
+    console.log("Getting user token for", userId, userName); // Log here
+  
+    const response = await fetch('/api/token', {
       method: 'POST',
-      headers:{ 'Content-Type': 'application/json'},
-      body: JSON.stringify({userId: userId}),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId }),
     });
-
+  
     const responseBody = await response.json();
     console.log("getUserToken response:", responseBody);
+  
     const token = responseBody.token;
-
-    if (!token){
+  
+    if (!token) {
       console.error("No Token!");
     }
-
+  
     const user: User = {
       id: userId,
       name: userName,
       image: `https://getstream.io/random_png/?id=${userId}&name=${userName}`,
     };
-
+  
     const apiKey = process.env.STREAM_API_KEY;
-    if (apiKey){
-
-    setHomeState({apiKey: apiKey, user: user, token: token});
+    if (apiKey) {
+      setHomeState({ apiKey, user, token });
     }
   }
-  console.log("Clerk User:", clerkUser);
+  
+  console.log("Clerk User before useEffect:", clerkUser);
   useEffect(() => {
     console.log("useEffect triggered", clerkUser); // Check if useEffect is triggered
     if (
@@ -89,7 +93,7 @@ export default function Home() {
         );
       }
     }
-  }, [registerUser, clerkUser]);
+  }, [clerkUser]);
   // LoadingIndicator is displayed until we have a homestate to display.
   if (!homeState){return <LoadingIndicator />};
 
