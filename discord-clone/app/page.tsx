@@ -93,7 +93,7 @@ export default function Home() {
         );
       }
     }
-  }, [clerkUser]);
+  }, [registerUser ,clerkUser]);
   // LoadingIndicator is displayed until we have a homestate to display.
   if (!homeState){return <LoadingIndicator />};
 
