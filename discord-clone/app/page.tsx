@@ -32,6 +32,7 @@ export default function Home() {
 
       })
       const responseBody = response.json();
+      console.log("registerUser response:", responseBody); 
       return responseBody
     }
     //update clerkUser whenever this is changed.
@@ -39,6 +40,7 @@ export default function Home() {
   
   // Function to get user token from frontend. fields needed are user ID and name.
   async function getUserToken(userId: string, userName: string){
+    console.log("Getting user token for", userId, userName);
     const response = await fetch('/api/token',{
       method: 'POST',
       headers:{ 'Content-Type': 'application/json'},
@@ -46,6 +48,7 @@ export default function Home() {
     });
 
     const responseBody = await response.json();
+    console.log("getUserToken response:", responseBody);
     const token = responseBody.token;
 
     if (!token){
@@ -64,8 +67,9 @@ export default function Home() {
     setHomeState({apiKey: apiKey, user: user, token: token});
     }
   }
-
+  console.log("Clerk User:", clerkUser);
   useEffect(() => {
+    console.log("useEffect triggered", clerkUser); // Check if useEffect is triggered
     if (
       clerkUser?.id &&
       clerkUser?.primaryEmailAddress?.emailAddress &&
