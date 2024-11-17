@@ -66,7 +66,7 @@ export default function Home() {
       image: `https://getstream.io/random_png/?id=${userId}&name=${userName}`,
     };
   
-    const apiKey = process.env.STREAM_API_KEY;
+    const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY;
     if (apiKey) {
       setHomeState({ apiKey: apiKey, user: user, token: token });
     }
@@ -96,6 +96,7 @@ export default function Home() {
     }
   }, [registerUser ,clerkUser]);
   // LoadingIndicator is displayed until we have a homestate to display.
+ 
   if (!homeState){return <LoadingIndicator />};
 
   return <MyChat {...homeState} />;
