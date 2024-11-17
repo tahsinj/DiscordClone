@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider, RedirectToSignIn, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { DiscordContextProvider } from "@/context/DiscordContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
     <html lang="en">
+      <DiscordContextProvider>
       <body>
         <header>
         <SignedOut>
@@ -38,6 +40,7 @@ export default function RootLayout({
       </header>
       <main>{children}</main>
       </body>
+      </DiscordContextProvider>
     </html>
     </ClerkProvider>
   );
