@@ -67,7 +67,7 @@ export default function Home() {
   
     const apiKey = process.env.STREAM_API_KEY;
     if (apiKey) {
-      setHomeState({ apiKey, user, token });
+      setHomeState({ apiKey: apiKey, user: user, token: token });
     }
   }
   
