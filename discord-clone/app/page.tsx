@@ -5,6 +5,7 @@ import { User } from "stream-chat";
 import { useCallback, useEffect, useState } from 'react';
 import { LoadingIndicator } from "stream-chat-react";
 import { useClerk } from "@clerk/nextjs";
+import MyChat from "@/components/myChat";
 
 type HomeState = {
   apiKey: string;
@@ -97,5 +98,5 @@ export default function Home() {
   // LoadingIndicator is displayed until we have a homestate to display.
   if (!homeState){return <LoadingIndicator />};
 
-  return <div>Welcome to Discord</div>;
+  return <MyChat {...homeState} />;
 }
