@@ -10,9 +10,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^5.0.62",
+    "@clerk/nextjs": "^6.3.1",
     "next": "15.0.3",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "stream-chat": "^8.43.0",
+    "stream-chat-react": "^12.5.2"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
