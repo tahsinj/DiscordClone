@@ -65,3 +65,9 @@ body {
   --content-width: 0.5rem;
   --offset: -0.15rem;
  }
+
+ .selected-icon::before {
+  --content-height: 2rem;
+  --content-width: 0.5rem;
+  --offset: -0.15rem;
+ }
