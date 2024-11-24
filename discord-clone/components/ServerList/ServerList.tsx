@@ -23,7 +23,7 @@ export default function ServerList(): JSX.Element {
     return (
         <div className='bg-dark-gray h-full flex flex-col items-center'>
             {servers.map((server)=>(
-                <button key = {server.id} className='p-4' onClick = {() => console.log(server.name)}>
+                <button key = {server.id} className={`p-4 sidebar-icon`} onClick = {() => console.log(server.name)}>
                     {server.image && checkIfUrl(server.image) ? (
                         <Image
                         className = 'rounded-icon'
