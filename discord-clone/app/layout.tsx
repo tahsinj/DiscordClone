@@ -35,7 +35,6 @@ export default function RootLayout({
           <RedirectToSignIn />
         </SignedOut>
         <SignedIn>
-          <UserButton />
         </SignedIn>
       </header>
       <main>{children}</main>
