@@ -1,10 +1,11 @@
 import Link from "next/link";
 import CloseIcon from "../icons";
-import { useSearchParams } from "next/navigation";
+import { useRouter,useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { UserObject } from "@/models/UserObject";
 import { useChatContext } from "stream-chat-react";
 import UserRow from "../UserRow";
+import router from "next/router";
 
 type FormState = {
     serverName: string;
@@ -100,6 +101,7 @@ export default function CreateServerForm(): JSX.Element {
                         }
                         required />
                 </div>
+                <h2 className='mb-2 labelTitle'>Add Users</h2>
                 <div className='max-h-64 overflow-y-scroll'>
                     {users.map((user) => (
                         <UserRow key={user.id} user={user} userChanged={userChanged}/>
@@ -107,8 +109,36 @@ export default function CreateServerForm(): JSX.Element {
                     ))}
                 </div>
             </form>
+            <div className='flex space-x-6 items-center justify-end p-6 bg-gray-200'>
+                <Link href={'/'} className='font-semibold text-gray-500'>
+                Cancel 
+                </Link>
+                <button
+                type='submit'
+                disabled={buttonDisabled()}
+                className={`bg-discord rounded py-2 px-4 text-white font-bold uppercase ${buttonDisabled()} ? 'opacity-50 cursor-not-allowed' : ''}`}
+                onClick={createClicked}
+                >
+                    Create Server
+                </button>
+            </div>
         </dialog>
     );
+
+    function buttonDisabled(): boolean{
+        return(
+            !formData.serverName ||
+            !formData.serverImage ||
+            formData.users.length <=1
+        );
+    }
+
+    function createClicked(){
+        //Todo Create the real server
+        setFormData(initialState);
+        router.replace('/');
+    }
+
     function userChanged(user: UserObject, checked:boolean){
         if (checked){
             setFormData({
