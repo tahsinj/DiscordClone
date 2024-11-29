@@ -5,7 +5,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { UserObject } from "@/models/UserObject";
 import { useChatContext } from "stream-chat-react";
 import UserRow from "../UserRow";
-import router from "next/router";
+
+
 
 type FormState = {
     serverName: string;
@@ -14,10 +15,13 @@ type FormState = {
 };
 
 export default function CreateServerForm(): JSX.Element {
+    const router = useRouter();
     // To check if dialog is shown
     const params = useSearchParams();
     const showCreateServerForm = params.get('createServer');
     const dialogRef = useRef<HTMLDialogElement>(null);
+
+
 
     //Data
     const { client } = useChatContext();
@@ -67,7 +71,7 @@ export default function CreateServerForm(): JSX.Element {
                     Create new server
                 </h2>
                 <Link href='/'>
-                    <CloseIcon />
+                    <CloseIcon className='w-10 h-10 texxt-gray-400' />
                 </Link>
             </div>
             <form method='dialog' className='flex flex-col space-y-2 px-6'>

@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Link from "next/link";
 import CreateServerForm from "./CreateServerForm";
-
 export default function ServerList(): JSX.Element {
     const [activeServer, setActiveServer] = useState<DiscordServer| undefined>();
     const servers: DiscordServer[] = [
@@ -64,3 +63,4 @@ export default function ServerList(): JSX.Element {
         }
     }
 }
+
