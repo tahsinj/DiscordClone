@@ -66,12 +66,12 @@ export default function CreateServerForm(): JSX.Element {
 
     return (
         <dialog className='absolute z-10 space-y-2 rounded-xl' ref={dialogRef}>
-            <div className='w-full felx items-center justify-between py-8 px-6'>
+            <div className='w-full flex items-center justify-between py-8 px-6'>
                 <h2 className='text-3xl font-semibold text-gray-600'>
-                    Create new server
+                Create new server
                 </h2>
                 <Link href='/'>
-                    <CloseIcon className='w-10 h-10 texxt-gray-400' />
+                    <CloseIcon className='w-10 h-10 text-gray-400' />
                 </Link>
             </div>
             <form method='dialog' className='flex flex-col space-y-2 px-6'>
