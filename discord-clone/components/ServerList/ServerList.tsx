@@ -48,7 +48,7 @@ export default function ServerList(): JSX.Element {
         <div className="bg-dark-gray h-full flex flex-col items-center">
             {serverList.map((server) => (
                 <button
-                    key={server.id || uuid()} // fallback to UUID if server.id is missing
+                    key={server.id } // fallback to UUID if server.id is missing
                     className={`p-4 sidebar-icon ${server.id === activeServer?.id ? 'selected-icon' : ''}`}
                     onClick={() => setActiveServer(server)}
                 >
