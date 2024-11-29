@@ -25,7 +25,7 @@ export const DiscordContextProvider: any = ({
     children: React.ReactNode;
   }) => {
     const [myState, setMyState]= useState<DiscordState>(initialValue);
-    const creatServer = useCallback(
+    const createServer = useCallback(
       async(
         client: StreamChat,
         name: string,
@@ -61,7 +61,7 @@ export const DiscordContextProvider: any = ({
 
     );
     const store: DiscordState = {
-      createServer:creatServer,
+      createServer:createServer,
 
     };
   
