@@ -120,7 +120,7 @@ export default function CreateServerForm(): JSX.Element {
                 <button
                 type='submit'
                 disabled={buttonDisabled()}
-                className={`bg-discord rounded py-2 px-4 text-white font-bold uppercase ${buttonDisabled()} ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`bg-discord rounded py-2 px-4 text-white font-bold uppercase ${buttonDisabled() ? 'opacity-50 cursor-not-allowed' : ''}`}
                 onClick={createClicked}
                 >
                     Create Server
