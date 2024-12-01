@@ -1,10 +1,13 @@
 'use client';
 
+import { DiscordServer } from "@/models/DiscordServer";
 import { createContext, useCallback, useContext, useState } from "react";
 import { StreamChat } from "stream-chat";
 import { v4 as uuid } from 'uuid';
 
 type DiscordState = {
+  server?:DiscordServer;
+  changeServer: (server: DiscordServer | undefined, client: StreamChat) => void;
   createServer: (
   client: StreamChat,
   name: string,
@@ -14,6 +17,8 @@ type DiscordState = {
 };
 
 const initialValue: DiscordState = {
+  server:undefined,
+  changeServer: ()=> {},
   createServer: ()=>{},
 };
 
@@ -25,6 +30,17 @@ export const DiscordContextProvider: any = ({
     children: React.ReactNode;
   }) => {
     const [myState, setMyState]= useState<DiscordState>(initialValue);
+    const changeServer = useCallback(
+      async (server: DiscordServer | undefined, client: StreamChat) => {
+        setMyState((myState) => {
+          return {...myState,server};
+
+        });
+
+      },
+      [setMyState]
+    );
+
     const createServer = useCallback(
       async(
         client: StreamChat,
@@ -61,6 +77,8 @@ export const DiscordContextProvider: any = ({
 
     );
     const store: DiscordState = {
+      server:myState.server,
+      changeServer:changeServer,
       createServer:createServer,
 
     };

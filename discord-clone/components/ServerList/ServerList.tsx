@@ -6,11 +6,13 @@ import Link from "next/link";
 import CreateServerForm from "./CreateServerForm";
 import { useChatContext } from "stream-chat-react";
 import { Channel } from 'stream-chat';
+import { useDiscordContext } from "@/context/DiscordContext";
 
 export default function ServerList(): JSX.Element {
     const { client } = useChatContext();
+    const { server: activeServer, changeServer} = useDiscordContext();
 
-    const [activeServer, setActiveServer] = useState<DiscordServer | undefined>();
+    
     const [serverList, setServerList] = useState<DiscordServer[]>([]);
 
     const loadServerList = useCallback(async (): Promise<void> => {
@@ -30,15 +32,16 @@ export default function ServerList(): JSX.Element {
                 .filter((server: DiscordServer) => server.name !== 'Unknown')
                 .filter(
                     (server: DiscordServer, index, self) =>
-                        index === self.findIndex((serverObject) => serverObject.name == server.name)
+                        index === 
+                        self.findIndex((serverObject) => serverObject.name == server.name)
                 )
         );
         const serverArray = Array.from(serverSet.values());
         setServerList(serverArray);
         if (serverArray.length > 0) {
-            setActiveServer(serverArray[0]);
+            changeServer(serverArray[0],client);
         }
-    }, [client]);
+    }, [client,changeServer]);
 
     useEffect(() => {
         loadServerList();
@@ -46,11 +49,18 @@ export default function ServerList(): JSX.Element {
 
     return (
         <div className="bg-dark-gray h-full flex flex-col items-center">
+            <button
+             className={`block p-3 aspect-square sidebar-icon border-t-2 border-t-gray-300 ${
+                activeServer === undefined ? 'selected-icon' : ''
+              }`}
+              onClick={()=> changeServer(undefined,client)}
+            >   
+            </button>
             {serverList.map((server) => (
                 <button
-                    key={server.id } // fallback to UUID if server.id is missing
+                    key={server.id } 
                     className={`p-4 sidebar-icon ${server.id === activeServer?.id ? 'selected-icon' : ''}`}
-                    onClick={() => setActiveServer(server)}
+                    onClick={() => changeServer(server,client)}
                 >
                     {server.image && checkIfUrl(server.image) ? (
                         <Image
@@ -77,7 +87,7 @@ export default function ServerList(): JSX.Element {
         </div>
     );
 
-    function checkIfUrl(path: string): Boolean {
+    function checkIfUrl(path: string): boolean {
         try {
             const _ = new URL(path);
             return true;
