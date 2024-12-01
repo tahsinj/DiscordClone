@@ -1,5 +1,5 @@
 import Link from "next/link";
-import CloseIcon from "../icons";
+import {CloseIcon} from "../icons";
 import { useRouter,useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { UserObject } from "@/models/UserObject";
