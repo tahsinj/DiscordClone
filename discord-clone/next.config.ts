@@ -7,11 +7,17 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
+        
 
       },
       {
         protocol: "https",
         hostname: "getstream.io",
+      },
+      
+      {
+        protocol: "https",
+        hostname: "plus.unsplash.com",
       },
     ]
   }
