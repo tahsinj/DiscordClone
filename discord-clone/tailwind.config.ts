@@ -12,8 +12,8 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         'dark-gray': '#dfe1e4',
-        discord: '#7289da'
-
+        discord: '#7289da',
+        'medium-gray': '#f0f1f3',
       },
     },
   },
