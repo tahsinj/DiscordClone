@@ -108,13 +108,33 @@ dialog{
 }
 .discord-icon {
   @apply bg-white p-3 w-full h-full;
-  background:url('/assets/discord-black.svg') no-repeat center center, white;
+  background:url('../assets/discord-black.svg') no-repeat center center, white;
   background-origin: content-box;
+  border-radius: 50%;
 }
 .discord-icon:hover {
-background: url('/assets/discord-white.svg') no-repeat center center,
+background: url('../assets/discord-white.svg') no-repeat center center,
 var(--discord-purple);
 --offset: 1.5rem;
 background-origin: content-box;
 
+}
+
+.online-icon::after {
+  @apply block absolute h-4 w-4 bg-green-600 bottom-0 right-0 rounded-full border-2 border-gray-200;
+  content: '';
+}
+
+.inactive-icon::after {
+  @apply block absolute h-full w-0.5 bg-red-400 rotate-45 rounded-xl m-2;
+  content: '';
+}
+
+.channel-container{
+  @apply relative;
+}
+
+.channel-container::before {
+  @apply block absolute h-2 w-3 -left-4 bg-gray-700 rounded-xl;
+  content: '';
 }

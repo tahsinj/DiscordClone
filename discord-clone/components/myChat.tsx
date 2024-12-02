@@ -4,13 +4,13 @@ import {
   Chat,
   Channel,
   ChannelList,
-  ChannelHeader,
   MessageList,
   MessageInput,
   Thread,
   Window,
 } from 'stream-chat-react';
 import ServerList from './ServerList/ServerList';
+import CustomChannelList from './ChannelList/CustomChannelList';
 
 export default function MyChat({
     apiKey,
@@ -35,7 +35,7 @@ export default function MyChat({
         <Chat client={chatClient} theme='str-chat__theme-light'>
           <section className='flex h-screen w-screen layout'>
             <ServerList />
-            <ChannelList />
+            <ChannelList List={CustomChannelList}/>
               <Channel>
                   <Window>
                       <MessageList />

@@ -1,10 +1,11 @@
 import Link from "next/link";
-import CloseIcon from "../icons";
+import {CloseIcon} from "../icons";
 import { useRouter,useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { UserObject } from "@/models/UserObject";
 import { useChatContext } from "stream-chat-react";
-import UserRow from "../UserRow";
+import UserRow from "../ChannelList/CreateChannelForm/UserRow";
+import { useDiscordContext } from "@/context/DiscordContext";
 
 
 
@@ -25,6 +26,7 @@ export default function CreateServerForm(): JSX.Element {
 
     //Data
     const { client } = useChatContext();
+    const {createServer} = useDiscordContext();
     const initialState: FormState = {
         serverName: '',
         serverImage: '',
@@ -120,7 +122,7 @@ export default function CreateServerForm(): JSX.Element {
                 <button
                 type='submit'
                 disabled={buttonDisabled()}
-                className={`bg-discord rounded py-2 px-4 text-white font-bold uppercase ${buttonDisabled()} ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`bg-discord rounded py-2 px-4 text-white font-bold uppercase ${buttonDisabled() ? 'opacity-50 cursor-not-allowed' : ''}`}
                 onClick={createClicked}
                 >
                     Create Server
@@ -139,6 +141,12 @@ export default function CreateServerForm(): JSX.Element {
 
     function createClicked(){
         //Todo Create the real server
+          createServer(
+            client,
+            formData.serverName,
+            formData.serverImage,
+            formData.users.map((user) => user.id)
+          );
         setFormData(initialState);
         router.replace('/');
     }

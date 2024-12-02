@@ -1,6 +1,6 @@
 import { UserObject } from "@/models/UserObject";
 import Image from "next/image";
-import { PersonIcon } from "./icons";
+import { PersonIcon } from "../../icons";
 
 
 export default function UserRow({
