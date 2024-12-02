@@ -15,6 +15,7 @@ import CustomChannelList from './ChannelList/CustomChannelList';
 import CustomChannelHeader from './MessageList/CustomChannelHeader/CustomChannelHeader';
 import CustomMessage from './MessageList/CustomMessage/CustomMessage';
 import { customReactionOptions } from './MessageList/CustomMessage/CustomMessageReactions';
+import MessageComposer from './MessageList/MessageCompose/MessageComposer';
 
 export default function MyChat({
     apiKey,
@@ -45,6 +46,7 @@ export default function MyChat({
               HeaderComponent={CustomChannelHeader}
               Message={CustomMessage}
               reactionOptions={customReactionOptions}
+              Input={MessageComposer}
               >
                   <Window>
                       <MessageList />
