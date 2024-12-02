@@ -16,6 +16,12 @@ type DiscordState = {
   imageUrl: string,
   userIds: string[]
   ) => void;
+  createChannel: (
+    client: StreamChat,
+    name: string,
+    category: string,
+    userIds: string[]
+  ) => void;
 };
 
 const initialValue: DiscordState = {
@@ -23,6 +29,7 @@ const initialValue: DiscordState = {
   channelsByCategories: new Map(),
   changeServer: ()=> {},
   createServer: ()=>{},
+  createChannel: ()=>{},
 };
 
 const DiscordContext = createContext<DiscordState>(initialValue);
@@ -119,12 +126,40 @@ export const DiscordContextProvider: any = ({
       []
 
     );
+
+    const createChannel = useCallback(
+      async (
+        client: StreamChat,
+        name: string,
+        category: string,
+        userIds: string[]
+      ) => {
+        if (client.userID){
+          const channel = client.channel('messaging', {
+            name: name,
+            members: userIds,
+            data: {
+              image: myState.server?.image,
+              serverId: myState.server?.id,
+              server: myState.server?.name,
+              category: category,
+            },
+          });
+          try {
+            const response = await channel.create();
+          }catch(err){
+            console.log(err);
+          }
+        }
+      },
+      [myState.server]
+    );
     const store: DiscordState = {
       server:myState.server,
       channelsByCategories: myState.channelsByCategories,
       changeServer:changeServer,
       createServer:createServer,
-
+      createChannel:createChannel,
     };
   
 
