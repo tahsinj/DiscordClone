@@ -14,6 +14,7 @@ export default {
         'dark-gray': '#dfe1e4',
         discord: '#7289da',
         'medium-gray': '#f0f1f3',
+        'dark-discord': '#4572c4',
       },
     },
   },
