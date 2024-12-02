@@ -24,7 +24,7 @@ export default function ServerList(): JSX.Element {
             channels
                 .map((channel: Channel) => {
                     return {
-                        id: channel.data?.data?.id,
+                        id: channel.data?.id,
                         name: (channel.data?.data?.server as string) ?? 'Unknown',
                         image: channel.data?.data?.image,
                     };
@@ -36,6 +36,7 @@ export default function ServerList(): JSX.Element {
                         self.findIndex((serverObject) => serverObject.name == server.name)
                 )
         );
+        console.log(serverSet);
         const serverArray = Array.from(serverSet.values());
         setServerList(serverArray);
         if (serverArray.length > 0) {
@@ -46,22 +47,28 @@ export default function ServerList(): JSX.Element {
     useEffect(() => {
         loadServerList();
     }, [loadServerList]);
-
+    
     return (
         <div className="bg-dark-gray h-full flex flex-col items-center">
             <button
-             className={`block p-3 aspect-square sidebar-icon border-t-2 border-t-gray-300 ${
+             className={`block p-3 aspect-square sidebar-icon border-b-2 border-b-gray-300 ${
                 activeServer === undefined ? 'selected-icon' : ''
               }`}
               onClick={()=> changeServer(undefined,client)}
             >   
+            <div className='rouded-icon discord-icon'></div>
             </button>
+            <div className='border-t-2 border-t-gray-300'>
+            
             {serverList.map((server) => (
+                
                 <button
                     key={server.id } 
+                    
                     className={`p-4 sidebar-icon ${server.id === activeServer?.id ? 'selected-icon' : ''}`}
                     onClick={() => changeServer(server,client)}
                 >
+                    
                     {server.image && checkIfUrl(server.image) ? (
                         <Image
                             className="rounded-icon"
@@ -77,6 +84,7 @@ export default function ServerList(): JSX.Element {
                     )}
                 </button>
             ))}
+            </div>
             <Link
                 href={'/?createServer=true'}
                 className="flex items-center justify-center rounded icon bg-white p-2 my-2 text-2xl font-light h-12 w-12 text-green-500 hover:bg-green-500 hover:text-white hover:rounded-xl transition-all duration-200"
