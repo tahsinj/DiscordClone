@@ -5,8 +5,7 @@ import {
   } from 'stream-chat-react';
   import Image from 'next/image';
   import { useState } from 'react';
-  import { MessageOptions } from 'stream-chat-react';
-  
+  import MessageOptions from './MessageOptions';
   
   export default function CustomMessage(): JSX.Element {
     const { message } = useMessageContext();
@@ -26,6 +25,9 @@ import {
           alt='User avatar'
         />
         <div>
+          {showOptions && (
+            <MessageOptions showEmojiReactions={setShowReactions} />
+          )}
           {showReactions && (
             <div className='absolute'>
               <ReactionSelector />
