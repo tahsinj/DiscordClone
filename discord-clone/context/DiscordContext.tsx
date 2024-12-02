@@ -134,8 +134,10 @@ export const DiscordContextProvider: any = ({
         category: string,
         userIds: string[]
       ) => {
-        if (client.userID){
-          const channel = client.channel('messaging', {
+        if (client.userID) {
+          console.log("HERE" + myState.server?.image, myState.server?.id,myState.server?.name,category);
+          console.log(name, userIds, client);
+          const channel = client.channel('messaging', uuid(), {
             name: name,
             members: userIds,
             data: {
@@ -147,7 +149,7 @@ export const DiscordContextProvider: any = ({
           });
           try {
             const response = await channel.create();
-          }catch(err){
+          } catch (err) {
             console.log(err);
           }
         }
