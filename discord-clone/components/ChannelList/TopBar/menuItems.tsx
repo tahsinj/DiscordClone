@@ -30,7 +30,7 @@ export const menuItems: ListRowElement[] = [
         bottomBorder: false,
         purple: true,
       },
-    { name: 'Server Settings', icon: <Gear />, bottomBorder: false },
+  { name: 'Server Settings', icon: <Gear />, bottomBorder: false },
   { name: 'Create Channel', icon: <PlusCircle />, bottomBorder: false },
   { name: 'Create Category', icon: <FolderPlus />, bottomBorder: false },
   { name: 'App Directory', icon: <FaceSmile />, bottomBorder: true },
