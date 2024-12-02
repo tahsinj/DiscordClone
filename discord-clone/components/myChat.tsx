@@ -8,6 +8,7 @@ import {
   MessageInput,
   Thread,
   Window,
+  DateSeparator,
 } from 'stream-chat-react';
 import ServerList from './ServerList/ServerList';
 import CustomChannelList from './ChannelList/CustomChannelList';
@@ -36,7 +37,8 @@ export default function MyChat({
           <section className='flex h-screen w-screen layout'>
             <ServerList />
             <ChannelList List={CustomChannelList}/>
-              <Channel>
+              <Channel 
+              DateSeparator={DateSeparator}>
                   <Window>
                       <MessageList />
                       <MessageInput />
