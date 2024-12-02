@@ -4,7 +4,7 @@ import { useRouter,useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { UserObject } from "@/models/UserObject";
 import { useChatContext } from "stream-chat-react";
-import UserRow from "../UserRow";
+import UserRow from "../ChannelList/CreateChannelForm/UserRow";
 import { useDiscordContext } from "@/context/DiscordContext";
 
 
