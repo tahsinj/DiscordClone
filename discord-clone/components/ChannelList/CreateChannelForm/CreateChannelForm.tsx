@@ -1,5 +1,6 @@
 import { CloseIcon } from "@/components/icons";
 import UserRow from "@/components/UserRow";
+import { useDiscordContext } from "@/context/DiscordContext";
 import { UserObject } from "@/models/UserObject";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -23,7 +24,7 @@ export default function CreateChannelForm(): JSX.Element {
     const router = useRouter();
 
     const { client } = useChatContext();
-
+    const { createChannel } = useDiscordContext();
 
     const initialState: FormState = {
         channelName: '',
@@ -153,6 +154,12 @@ export default function CreateChannelForm(): JSX.Element {
   }
 
   function createClicked(){
+    createChannel(
+        client,
+        formData.channelName,
+        formData.category,
+        formData.users.map((user) => user.id)
+    );
     setFormData(initialState);
     router.replace('/');
   }
