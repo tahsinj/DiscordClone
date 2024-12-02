@@ -12,6 +12,7 @@ import {
 } from 'stream-chat-react';
 import ServerList from './ServerList/ServerList';
 import CustomChannelList from './ChannelList/CustomChannelList';
+import CustomChannelHeader from './MessageList/CustomChannelHeader/CustomChannelHeader';
 
 export default function MyChat({
     apiKey,
@@ -38,7 +39,9 @@ export default function MyChat({
             <ServerList />
             <ChannelList List={CustomChannelList}/>
               <Channel 
-              DateSeparator={DateSeparator}>
+              DateSeparator={DateSeparator}
+              HeaderComponent={CustomChannelHeader}
+              >
                   <Window>
                       <MessageList />
                       <MessageInput />
