@@ -8,9 +8,14 @@ import {
   MessageInput,
   Thread,
   Window,
+  DateSeparator,
 } from 'stream-chat-react';
 import ServerList from './ServerList/ServerList';
 import CustomChannelList from './ChannelList/CustomChannelList';
+import CustomChannelHeader from './MessageList/CustomChannelHeader/CustomChannelHeader';
+import CustomMessage from './MessageList/CustomMessage/CustomMessage';
+import { customReactionOptions } from './MessageList/CustomMessage/CustomMessageReactions';
+import MessageComposer from './MessageList/MessageCompose/MessageComposer';
 
 export default function MyChat({
     apiKey,
@@ -36,7 +41,13 @@ export default function MyChat({
           <section className='flex h-screen w-screen layout'>
             <ServerList />
             <ChannelList List={CustomChannelList}/>
-              <Channel>
+              <Channel 
+              DateSeparator={DateSeparator}
+              HeaderComponent={CustomChannelHeader}
+              Message={CustomMessage}
+              reactionOptions={customReactionOptions}
+              Input={MessageComposer}
+              >
                   <Window>
                       <MessageList />
                       <MessageInput />
